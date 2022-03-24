@@ -12,7 +12,7 @@ class ApproveRuanganController extends Controller
     public function index()
     {
         $dataApprove = DB::table('jadwal_ruangan')
-            ->select('jadruang_keterangan', 'jadruang_status', 'jadruang_id', 'ruang_nama', 'ruang_lokasi', 'user_email', 'jadruang_tanggal_mulai'
+            ->select('jadruang_keterangan', 'jadruang_status', 'jadruang_id', 'ruang_nama', 'ruang_lokasi', 'email', 'jadruang_tanggal_mulai'
                 , 'jadruang_tanggal_selesai')
             ->join('sys_user', 'user_id', '=', 'jadruang_user_id')
             ->join('master_ruang', 'jadruang_ruang_id', '=', 'ruang_id')
@@ -21,7 +21,7 @@ class ApproveRuanganController extends Controller
             ->groupBy('jadruang_id')
             ->groupBy('ruang_nama')
             ->groupBy('ruang_lokasi')
-            ->groupBy('user_email')
+            ->groupBy('email')
             ->groupBy('jadruang_tanggal_mulai')
             ->groupBy('jadruang_tanggal_selesai')
             ->groupBy('jadruang_status')

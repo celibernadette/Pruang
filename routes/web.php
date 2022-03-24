@@ -1,60 +1,51 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PhotoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
-use App\Http\Controllers\ImageUploadController;
-  
+use Illuminate\Support\Facades\Route;
 
-  
 
-Route::get('image-upload', [ ImageUploadController::class, 'imageUpload' ])->name('image.upload');
-Route::post('image-upload', [ ImageUploadController::class, 'imageUploadPost' ])->name('image.upload.post');
+Route::get('image-upload', [ImageUploadController::class, 'imageUpload'])->name('image.upload');
+Route::post('image-upload', [ImageUploadController::class, 'imageUploadPost'])->name('image.upload.post');
 Route::get('image/{filename}', 'HomeController@displayImage')->name('image.displayImage');
 
 Route::resource('photos', PhotoController::class)
-        ->missing(function (Request $request) {
-            return Redirect::route('photos.index');
-        });
+    ->missing(function (Request $request) {
+        return Redirect::route('photos.index');
+    });
 
 Route::resource('photos', PhotoController::class);
 Route::resources([
     'photos' => PhotoController::class,
     'posts' => PostController::class,
 ]);
- 
+
 Route::resource('photos', PhotoController::class)->only([
     'index', 'show'
 ]);
- 
+
 Route::resource('photos', PhotoController::class)->except([
     'create', 'store', 'update', 'destroy'
 ]);
 
-use App\Http\Controllers\PostController;
- 
 Route::apiResources([
     'photos' => PhotoController::class,
     'posts' => PostController::class,
 ]);
-use App\Http\Controllers\PhotoCommentController;
- 
+
 Route::resource('photos.comments', PhotoCommentController::class);
 
-use App\Http\Controllers\CommentController;
- 
 Route::resource('photos.comments', CommentController::class)->shallow();
- 
+
 Route::resource('photos', PhotoController::class)->names([
     'create' => 'photos.build'
 ]);
- 
+
 Route::resource('photos.comments', PhotoCommentController::class)->scoped([
     'comment' => 'slug',
 ]);
- 
+
 Route::get('/photos/popular', [PhotoController::class, 'popular']);
 Route::resource('photos', PhotoController::class);
 
@@ -75,6 +66,11 @@ Route::prefix('main')->middleware('auth')->group(function () {
 
     Route::prefix('ruangan')->group(function () {
         Route::get('/', [Main\SettingRuangController::class, 'index']);
+        Route::get('/create', [Main\SettingRuangController::class, 'create']);
+        Route::post('/create', [Main\SettingRuangController::class, 'store']);
+        Route::get('/edit/{ruang_id}', [Main\SettingRuangController::class, 'edit']);
+        Route::post('/edit/{ruang_id}', [Main\SettingRuangController::class, 'update']);
+        Route::get('/delete/{ruang_id}', [Main\SettingRuangController::class, 'destroy']);
 
     });
     Route::prefix('peminjaman-saya')->group(function () {

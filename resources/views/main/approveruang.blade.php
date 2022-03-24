@@ -45,7 +45,7 @@
                                         <td>{{ strtoupper($data->jadruang_status) }}</td>
                                         <td>{{ $data->ruang_nama }}</td>
                                         <td>{{ $data->ruang_lokasi }}</td>
-                                        <td>{{ $data->user_email }}</td>
+                                        <td>{{ $data->email }}</td>
                                         <td>{{ $data->jadruang_keterangan }}</td>
                                         <td>{{ $data->jadruang_tanggal_mulai }}
                                             s/d {{$data->jadruang_tanggal_selesai}} </td>
