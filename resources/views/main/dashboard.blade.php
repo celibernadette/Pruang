@@ -7,10 +7,10 @@
         <div class="col-12">
             <div class="card mb-4" style="height: 500px">
                 <div class="card-header pb-0">
-                    <h6><marquee> Halo Selamat Datang {{ auth()->user()->user_email }}</marquee></h6>
+                    <h6><marquee> Halo Selamat Datang {{ auth()->user()->email }}</marquee></h6>
                 </div>
                 <div class="card-body px-0 pt-0 pb-2">
-                    
+
 <div class="container">
 
     <div class="panel panel-primary">
@@ -32,7 +32,7 @@
         <img src="images/{{ Session::get('image') }}">
 
         @endif
-    
+
 
         @if (count($errors) > 0)
 
@@ -72,12 +72,12 @@
 
                 </div>
 
-     
+
 
             </div>
 
         </form>
-    
+
 
       </div>
 

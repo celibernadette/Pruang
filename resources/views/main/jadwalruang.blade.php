@@ -34,7 +34,7 @@
                                             <ul>
                                                 @if(!empty($data->master_ruang_approvers))
                                                     @foreach($data->master_ruang_approvers as $approver)
-                                                        <li>{{$approver->sys_user->user_email}}</li>
+                                                        <li>{{$approver->sys_user->email}}</li>
                                                     @endforeach
                                                 @endif
                                             </ul>

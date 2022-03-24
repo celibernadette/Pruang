@@ -15,7 +15,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  *
  * @property int $user_id
  * @property int $user_level_id
- * @property string $user_email
+ * @property string $email
  * @property string $user_password
  * @property Carbon|null $user_last_login
  * @property Carbon $user_created_at
@@ -52,7 +52,7 @@ class SysUser extends Authenticatable
 
 	protected $fillable = [
 		'user_level_id',
-		'user_email',
+		'email',
 		'user_password',
 		'user_last_login',
 		'user_created_at',
