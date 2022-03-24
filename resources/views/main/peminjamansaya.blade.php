@@ -55,9 +55,8 @@
                                         <td>{{ $data->jadruang_created_at?->isoFormat('LLLL') }}</td>
                                         <td>
                                             @if($data->jadruang_status == 'menunggu')
-                                                <a href="{{url('/main/peminjaman-saya/update/'.$data ->jadruang_id)}}" class="btn btn-success btn-sm">Edit</a>
-                                                <<a href="{{url('/main/peminjaman-saya/delete/'.$data ->jadruang_id)}}" button class="btn btn-danger btn-sm">Delete</button>
-                                                
+                                                <a href="" class="btn btn-success btn-sm">Edit</a>
+                                                <button class="btn btn-danger btn-sm">Delete</button>
                                             @endif
                                         </td>
                                     </tr>

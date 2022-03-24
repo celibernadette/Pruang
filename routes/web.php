@@ -1,14 +1,20 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\PhotoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
- 
-/*Route::resource('photos', PhotoController::class)
+use App\Http\Controllers\ImageUploadController;
+  
+
+  
+
+Route::get('image-upload', [ ImageUploadController::class, 'imageUpload' ])->name('image.upload');
+Route::post('image-upload', [ ImageUploadController::class, 'imageUploadPost' ])->name('image.upload.post');
+Route::get('image/{filename}', 'HomeController@displayImage')->name('image.displayImage');
+
+Route::resource('photos', PhotoController::class)
         ->missing(function (Request $request) {
             return Redirect::route('photos.index');
         });
@@ -50,7 +56,7 @@ Route::resource('photos.comments', PhotoCommentController::class)->scoped([
 ]);
  
 Route::get('/photos/popular', [PhotoController::class, 'popular']);
-Route::resource('photos', PhotoController::class); */
+Route::resource('photos', PhotoController::class);
 
 Route::redirect('/', '/auth/login');
 Route::prefix('auth')->middleware('guest')->group(function () {
@@ -67,21 +73,14 @@ Route::get('logout', [Auth\LoginController::class, 'logout'])->name('logout');
 Route::prefix('main')->middleware('auth')->group(function () {
     Route::get('dashboard', [Main\DashboardController::class, 'index'])->name('home');
 
-    Route::prefix('settingruang')->group(function () {
+    Route::prefix('ruangan')->group(function () {
         Route::get('/', [Main\SettingRuangController::class, 'index']);
-        Route::get('/update/{id}', [Main\SettingRuangController::class,'update']);
-        Route::post('/update/{id}', [Main\SettingRuangController::class,'processUpdate']);
-        Route::get('/delete/{id}', [Main\SettingRuangController::class, 'delete']);
+
     });
     Route::prefix('peminjaman-saya')->group(function () {
         Route::get('/', [Main\PeminjamanSayaController::class, 'index']);
         Route::get('/add', [Main\PeminjamanSayaController::class,'create']);
         Route::post('/add', [Main\PeminjamanSayaController::class,'store']);
-        Route::get('/update/{id}', [Main\PeminjamanSayaController::class,'update']);
-        Route::post('/update/{id}', [Main\PeminjamanSayaController::class,'processUpdate']);
-        Route::get('/delete/{id}', [Main\PeminjamanSayaController::class, 'delete']);
-
-
     });
     Route::prefix('jadwalruang')->group(function(){
         Route::get('/', [Main\JadwalRuangController::class,'index']);

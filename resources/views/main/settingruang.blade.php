@@ -38,8 +38,8 @@
                                         </td>
                                         <td>{{ $data->ruang_created_at->format('Y-m-d H:i:s') }}</td>
                                         <td>
-                                            <a href="{{url('/main/settingruang/update/')}}" button class="btn btn-success btn-sm">Edit</a>
-                                            <a href="{{url('/main/settingruang/update/'.$data -> ruang_id)}}" button class="btn btn-danger btn-sm">Delete</button>
+                                            <a href="" class="btn btn-success btn-sm">Edit</a>
+                                            <button class="btn btn-danger btn-sm">Delete</button>
                                         </td>
                                     </tr>
                                 @endforeach

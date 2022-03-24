@@ -1,18 +1,6 @@
 @extends('layouts.layout_auth')
 @section('title', "Login")
 @section("content")
-<div class="container">
-<style>
-    .main-img {
-        background-image: url("https://ak2.picdn.net/shutterstock/videos/9057502/thumb/12.jpg");
-        background-position: center center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        height: 100vh;
-        width: 100%;
-    }
-    </style>
- </div>
     <div class="container">
         <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
 

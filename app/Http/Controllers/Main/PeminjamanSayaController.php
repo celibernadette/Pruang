@@ -26,42 +26,6 @@ class PeminjamanSayaController extends Controller
         return view('main.tambahpeminjaman')->with($parser);
     }
 
-    public function update($id)
-{
-    $dataRuang = MasterRuang::get();
-    $parser = ['dataRuang' => $dataRuang];
-    return view('main.updatepeminjaman')->with($parser);
-}
-public function processUpdate(Request $request, $id)
-    {
-        $request->validate([
-            'jadruang_keterangan'      => 'required',
-            'jadruang_ruang_id'        => 'required',
-            'jadruang_tanggal_mulai'   => 'required',
-            'jadruang_tanggal_selesai' => 'required',
-            'jam_mulai'                => 'required',
-            'jam_selesai'              => 'required',
-        ]);
-
-        $process = JadwalRuangan::findOrFail($id)->update($request->except('_token'));
-        if ($process) {
-            return redirect()->back()->with("success", "data berhasil diperbarui");
-        } else {
-            return redirect()->back()->withInput()->withErrors("Terjadi kesalahan");
-        }
-    }
-
-    public function delete($id)
-{
-    $process = JadwalRuangan::findOrFail($id)->delete();
-    if ($process) {
-        return redirect()->back()->with("success", "data berhasil dihapus");
-    } else {
-        return redirect()->back()->withErrors("Terjadi kesalahan saat menghapus
-data");
-    }
-}
-
     public function store(Request $request)
     {
         $request->validate([
@@ -92,8 +56,4 @@ data");
                 ->withInput($request->except('_token'));
         }
     }
-
-
-
-
 }

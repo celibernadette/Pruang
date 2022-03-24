@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\SysUser;
 
 class RegisterController extends Controller
 {
@@ -20,7 +21,7 @@ class RegisterController extends Controller
             'password' => 'required|min:4|confirmed',
             'gender' => "required"
         ]);
-        $user = new User();
+        $user = new SysUser();
         $user->email = $request->email;
         $user->user_jab_id = 2; // staff
         $user->password = bcrypt($request->password);

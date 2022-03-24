@@ -25,7 +25,7 @@ class LoginController extends Controller
             'password' => 'required|min:4'
         ]);
 
-        $credential = ['user_email' => $request->email, 'password' => $request->password];
+        $credential = ['email' => $request->email, 'password' => $request->password];
         $login = Auth::attempt($credential);
         if ($login) {
             // dd(Auth::check());
@@ -58,7 +58,7 @@ class LoginController extends Controller
 
             if (!$googleAccount) throw new Exception("Google account not found");
 
-            $dataUser = SysUser::where('user_email', '=', $googleAccount->email)->first();
+            $dataUser = SysUser::where('email', '=', $googleAccount->email)->first();
             if (!$dataUser) throw new Exception("User tidak ditemukan di database");
 
             Auth::login($dataUser);
